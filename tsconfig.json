@@ -22,7 +22,15 @@
       "lib": [
         "ES2022",
         "dom"
-      ]
+      ],
+      "paths": {
+        "@service/*": [
+            "src/app/uof-sp/service/*"
+        ],
+        "@uofmodule/*": [
+            "src/app/uof-sp/module/*"
+        ]
+      }
     },
     "exclude": ["node_modules", "**/node_modules/*"],
     "angularCompilerOptions": {
