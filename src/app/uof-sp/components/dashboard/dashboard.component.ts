@@ -206,6 +206,8 @@ export class DashboardComponent implements OnInit {
         }
 
         this.initChart(x_leables, data_Q3, data_P90, data_max);
+
+        console.log(yearm);
     }
 
     initChart(x_leables, data_Q3, data_P90, data_max) {
