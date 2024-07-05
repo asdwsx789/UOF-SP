@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 
 export class ChartDataService {
 
-    baseApiUrl: string = "http://127.0.0.1:8394";
+    baseApiUrl: string = "http://10.0.99.68:8000";
 
     constructor(private http: HttpClient) { }
 

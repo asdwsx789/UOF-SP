@@ -165,7 +165,6 @@ export class DashboardComponent implements OnInit {
             let time = item.time;
 
             if(yearm.indexOf(time) == -1) {
-                // _category[0]["category"].push( {label: time} );
                 yearm.push(time);
                 arr[time] = [];
             }else {
@@ -206,17 +205,7 @@ export class DashboardComponent implements OnInit {
             startDay.setDate(startDay.getDate() + 1);
         }
 
-        // if(yearm.length != 5) {
-        //     for (let index = 0; index < 5 - yearm.length; index++) {
-        //         data_Q3.push("");
-        //         data_P90.push("");
-        //         data_max.push("");
-        //     }
-        // }
-
         this.initChart(x_leables, data_Q3, data_P90, data_max);
-
-        console.log(x_leables);
     }
 
     initChart(x_leables, data_Q3, data_P90, data_max) {

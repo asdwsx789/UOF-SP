@@ -163,5 +163,18 @@ export class AppMenuComponent implements OnInit {
                 ]
             }
         ];
+
+        // this.model = [
+        //     {
+        //         label: 'Home',
+        //         items: [
+        //             { label: 'UOF', icon: 'pi pi pi-fw pi-apple', routerLink: ['/']}
+        //         ]
+        //     },
+        //     {
+        //         label: 'UI Components'
+        //     }
+        // ];
     }
+
 }
