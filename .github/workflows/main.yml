@@ -5,6 +5,7 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: Run a one-line script
+        run: echo Hello from
       - run: |
           cd C:\\actions-runner
           echo "hello world"
