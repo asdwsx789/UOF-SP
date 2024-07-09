@@ -1,0 +1,11 @@
+on:
+  push:
+jobs:
+  check-push-version:
+    runs-on: self-hosted
+    steps:
+      - name: Run a one-line script
+        run: echo Hello from
+      - run: |
+          echo hello world
+          
