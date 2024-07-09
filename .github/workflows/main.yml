@@ -1,7 +1,7 @@
 on:
   workflow_dispatch:
 jobs:
-  check-bats-version:
+  check-dispatc-version:
     runs-on: self-hosted
     steps:
       - name: Run a one-line script
