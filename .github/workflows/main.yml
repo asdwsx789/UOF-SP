@@ -5,9 +5,7 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: Run a one-line script
-        run: echo Hello from Octo Organization
       - run: |
           cd C:\\actions-runner
-          echo hello world > hello.txt
-          ls
+          echo "hello world"
           
