@@ -1,0 +1,13 @@
+<div class="card">
+    <div class="grid p-fluid mt-3">
+        <div class="field col-12 md:col-9">
+            <h5>UOF 每周線上人數統計</h5>
+        </div>
+
+        <div class="field col-12 md:col-3">
+            <p-dropdown [options]="weekOptions" [(ngModel)]="selectedOption" placeholder="{{ placeholder }}" (onChange)="onSortChange($event)"></p-dropdown>
+        </div>
+    </div>
+
+    <p-chart type="line" [data]="chartData" [options]="chartOptions"></p-chart>
+</div>
