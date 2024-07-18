@@ -6,6 +6,13 @@
     <title>UOF-SP - PrimeNG</title>
     <base href="/">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' http://10.0.99.68:8000; script-src 'self'; object-src 'none'; style-src 'self'"> -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' http://10.0.99.68:8000;
+        script-src 'self' 'unsafe-inline' 'unsafe-eval';
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+        font-src 'self' https://fonts.gstatic.com;
+        img-src 'self' data:;
+        connect-src 'self' http://10.0.99.68:8000 http://127.0.0.1:8394">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link id="theme-css" rel="stylesheet" type="text/css" href="assets/layout/styles/theme/lara-light-indigo/theme.css">
 </head>
