@@ -3,12 +3,13 @@ import { NgModule } from '@angular/core';
 import { NotfoundComponent } from './demo/components/notfound/notfound.component';
 import { AppLayoutComponent } from "./layout/app.layout.component";
 import { DashboardComponent } from './uof-sp/components/dashboard/dashboard.component';
+import { AuthGuard } from './uof-sp/components/auth/auth.guard';
 
 @NgModule({
     imports: [
         RouterModule.forRoot([
             {
-                path: '', component: AppLayoutComponent,
+                path: '', component: AppLayoutComponent, canActivate: [AuthGuard],
                 children: [
                     { path: '', loadChildren: () => import('./demo/components/dashboard/dashboard.module').then(m => m.DashboardModule) },
                     { path: 'uikit', loadChildren: () => import('./demo/components/uikit/uikit.module').then(m => m.UIkitModule) },

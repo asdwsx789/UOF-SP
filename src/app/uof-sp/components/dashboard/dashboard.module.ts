@@ -7,10 +7,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
 import { ChartModule } from 'primeng/chart';
+import { WeeklyheadcountLineComponent } from '../chartjs/weeklyheadcount-line/weeklyheadcount-line.component';
+import { HourlystatStackedBarComponent } from '../chartjs/hourlystat-stacked-bar/hourlystat-stacked-bar.component';
 
 @NgModule({
     declarations: [
-        DashboardComponent
+        DashboardComponent,
+        WeeklyheadcountLineComponent,
+        HourlystatStackedBarComponent
     ],
     imports: [
         CommonModule,
