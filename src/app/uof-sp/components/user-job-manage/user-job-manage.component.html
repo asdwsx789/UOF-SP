@@ -1,0 +1,165 @@
+<div class="col-12">
+    <div class="card" style="min-height: 720px;">
+        <p-toast position="top-center" key="logMsg"></p-toast>
+
+        <div class="grid">
+            <div class="col-12 md:col-3"></div>
+            <div class="col-12 md:col-6">
+                <div class="p-inputgroup">
+                    <input [(ngModel)]="accountId" type="text" pInputText placeholder="輸入工號">
+                    <button type="button" pButton pRipple label="Search" (click)="getUserInfo()"></button>
+                </div>
+            </div>
+            <div class="col-12 md:col-3"></div>
+        </div>
+
+        <div *ngIf="!userInfo" class="col-12 md:col-12">
+            <div class="grid" style="text-align: center;">
+                <div class="col-12 md:col-12">
+                    &nbsp;
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="userInfo" class="col-12 md:col-12">
+            <div class="grid" style="text-align: center;">
+                <div class="col-12 md:col-2">
+                    <h5 class="m-0">{{ userInfo.NAME }}</h5>
+                </div>
+                <div class="col-12 md:col-2">
+                    <h5 class="m-0">{{ userInfo.ACCOUNT }}</h5>
+                </div>
+                <div class="col-12 md:col-4">
+                    <h5 class="m-0">{{ userInfo.TITLE_NAME }}</h5>
+                </div>
+                <div class="col-12 md:col-4">
+                    <h5 class="m-0">{{ userInfo.GROUP_NAME }}</h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 md:col-12">
+            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2"
+                (click)="openNew()"></button>
+        </div>
+
+
+        <p-table #dt [value]="userJobLists" [columns]="" responsiveLayout="scroll" [rows]="8"
+            [globalFilterFields]="['name','country.name','representative.name','status']" [paginator]="true"
+            [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+            [(selection)]="selectedUserJobLists" selectionMode="multiple" [rowHover]="true" dataKey="FUNC_ID">
+            <!-- <ng-template pTemplate="caption">
+                <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
+                    <h5 class="m-0">職務</h5>
+                </div>
+            </ng-template> -->
+
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width: 3rem">
+                        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                    </th>
+                    <th pSortableColumn="jobName" style="width: 25%; text-align: center;">職務</th>
+                    <th pSortableColumn="jobInfo" style="text-align: center;">職務說明</th>
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-userJobList>
+                <tr>
+                    <td>
+                        <p-tableCheckbox [value]="userJobList"></p-tableCheckbox>
+                    </td>
+                    <td>
+                        <span class="p-column-title">FUNC_NAME</span>
+                        {{ userJobList.FUNC_NAME }}
+                    </td>
+                    <td>
+                        <span class="p-column-title">DESCRIPTION</span>
+                        {{ userJobList.DESCRIPTION }}
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+
+    <p-dialog [(visible)]="targetConfirmDialog" [style]="{'min-width': '720px'}" header="複製職務" [modal]="true" class="p-fluid">
+        <ng-template pTemplate="content">
+            <div class="grid">
+                <div class="col-12 md:col-3"></div>
+                <div class="col-12 md:col-6">
+                    <div class="p-inputgroup">
+                        <input [(ngModel)]="intentAccountId" type="text" pInputText placeholder="輸入對象工號">
+                        <button type="button" pButton pRipple label="Search" (click)="getintentUserInfo()"></button>
+                    </div>
+                </div>
+                <div class="col-12 md:col-3"></div>
+            </div>
+
+            <div class="col-12 md:col-12">
+                <div class="grid" style="text-align: center;">
+                    <div class="col-12 md:col-2" style="padding: 10px;">
+                        <h5>對象</h5>
+                    </div>
+                    <div *ngIf="intentUserInfo" class="col-12 md:col-5" style="padding: 10px;">
+                        <h5>{{ intentUserInfo.NAME }}</h5>
+                    </div>
+                    <div *ngIf="intentUserInfo" class="col-12 md:col-5" style="padding: 10px;">
+                        <h5>{{ intentUserInfo.ACCOUNT }}</h5>
+                    </div>
+                </div>
+            </div>
+
+            <p-table [value]="selectedUserJobLists" responsiveLayout="scroll" [rowHover]="true">
+                <ng-template pTemplate="caption">
+                    <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
+                        <h5 class="m-0">複製 {{ copyJobAmount }} 項職務</h5>
+                    </div>
+                </ng-template>
+
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th pSortableColumn="jobName" style="width: 25%; text-align: center;">職務</th>
+                        <th pSortableColumn="jobInfo" style="text-align: center;">職務說明</th>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-selectedUserJobList>
+                    <tr>
+                        <td>
+                            <span class="p-column-title">FUNC_NAME</span>
+                            {{ selectedUserJobList.FUNC_NAME }}
+                        </td>
+                        <td>
+                            <span class="p-column-title">DESCRIPTION</span>
+                            {{ selectedUserJobList.DESCRIPTION }}
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </ng-template>
+
+        <ng-template pTemplate="footer">
+            <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text"
+                (click)="hideDialog()"></button>
+            <button pButton pRipple label="Chack" icon="pi pi-check" class="p-button-text"
+                (click)="checkCopyJob()"></button>
+        </ng-template>
+    </p-dialog>
+
+    <p-dialog [(visible)]="descriptionDialog" [style]="{'min-width': '450px'}" header="處理描述" [modal]="true" class="p-fluid">
+        <ng-template pTemplate="content">
+            <div class="field">
+                <textarea id="description" pInputTextarea [(ngModel)]="description" required rows="3"
+                    cols="20"></textarea>
+            </div>
+        </ng-template>
+
+        <ng-template pTemplate="footer">
+            <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text"
+                (click)="hideDialog()"></button>
+            <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text"
+                (click)="confirmCopyJob()"></button>
+        </ng-template>
+    </p-dialog>
+</div>
